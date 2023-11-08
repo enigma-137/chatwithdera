@@ -7,7 +7,7 @@ import Providers from '@/components/Providers'
 
 import "react-loading-skeleton/dist/skeleton.css"
 import { Toaster } from '@/components/ui/toaster'
-import Footer from '@/components/Footer'
+// import Footer from '@/components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -29,7 +29,7 @@ export default function RootLayout({
         <Navbar/>
         {children}
         </body>
-        <Footer />
+        {/* <Footer /> */}
       </Providers>
       
     </html>
