@@ -24,12 +24,15 @@ const UploadDropZone = () => {
     const { startUpload } = useUploadThing("pdfUploader")
 
   const {mutate: startPolling} = trpc.getFile.useMutation({
-    onSuccess: (file?) => {
-        router.push(`/dashboard/${file?.id}`)
-    },
-    retry: true,
-    retryDelay: 500,
-  })   
+    
+        onSuccess: (file) => {
+          router.push(`/dashboard/${file?.id}`)
+        },
+        retry: true,
+        retryDelay: 500,
+      })   
+
+  
 
     const startSimulatedProgress = () => {
 

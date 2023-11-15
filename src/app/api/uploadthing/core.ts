@@ -41,9 +41,9 @@ export const ourFileRouter = {
 
         const pageAmt = pageLevelDocs.length;
 
-        // Here we vectorize and index the entire doc
+      
       // vectorize and index entire document
-      const pineconeIndex = pinecone.Index('quill');
+      const pineconeIndex = pinecone.Index('dera');
 
       const embeddings = new OpenAIEmbeddings({
         openAIApiKey: process.env.OPENAI_API_KEY,
@@ -51,6 +51,7 @@ export const ourFileRouter = {
   
       await PineconeStore.fromDocuments(pageLevelDocs, embeddings, {
         pineconeIndex,
+        namespace: createdFile.id,
       });
         await db.file.update({
           data: {
