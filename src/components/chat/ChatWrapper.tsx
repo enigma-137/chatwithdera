@@ -13,15 +13,24 @@ interface ChatWrapperProps {
   fileId: string
 }
 
-const ChatWrapper = ({ fileId }: ChatWrapperProps) => {
-
-  const { data, isLoading } = trpc.getFileUploadStatus.useQuery({
-    fileId,
-  }, {
-    refetchInterval: (data) =>
-      data?.status === "SUCCESS" || data?.status === "FAILED" ? false : 500
-
-  })
+const ChatWrapper = ({
+  fileId,
+}: ChatWrapperProps) => {
+  const { data, isLoading } =
+    trpc.getFileUploadStatus.useQuery(
+      {
+        fileId,
+      },
+      {
+        refetchInterval: (data) =>
+          data?.status === 'SUCCESS' ||
+          data?.status === 'FAILED'
+            ? false
+            : 500,
+      }
+    )
+  // console.log(data)
+  // console.log("Data Status:", data?.status);
 
   // https://github.com/joschan21/quill/blob/master/COPY-PASTE-LIST.md
 
@@ -68,7 +77,7 @@ const ChatWrapper = ({ fileId }: ChatWrapperProps) => {
 } ><ChevronLeft className='h-3 w-3 mr-1.5 animate-pulse' /> Back</Link>
       </div>
     </div>
-    <ChatInput isDisabled />
+    <ChatInput  />
   </div>
   )
   return (

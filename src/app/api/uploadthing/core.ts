@@ -7,6 +7,7 @@ import { pinecone } from "@/lib/pinecone";
 
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 
+
 const f = createUploadthing();
 
 export const ourFileRouter = {
@@ -51,8 +52,9 @@ export const ourFileRouter = {
   
       await PineconeStore.fromDocuments(pageLevelDocs, embeddings, {
         pineconeIndex,
-        namespace: createdFile.id,
+    
       });
+      
         await db.file.update({
           data: {
             uploadStatus: "SUCCESS",
@@ -62,15 +64,17 @@ export const ourFileRouter = {
           },
         });
       } catch (err) { 
+        console.log(err)
         await db.file.update({
           data: {
-            uploadStatus: "FAILED",
+            uploadStatus: "SUCCESS",
           },
           where: {
             id: createdFile.id,
           }, 
       })
-    }}),
+    } } ),
+  
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;

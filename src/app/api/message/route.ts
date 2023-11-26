@@ -51,8 +51,15 @@ const embeddings = new OpenAIEmbeddings({
 
 const vectorStore = await PineconeStore.fromExistingIndex(embeddings, {
   pineconeIndex,
-  namespace: file.id,
 })
+
+
+// import {QdrantClient} from '@qdrant/js-client-rest';
+
+// const client = new QdrantClient({
+//     url: 'https://90fab2ca-b5db-4375-b4c7-15e5aa3cc497.us-east4-0.gcp.cloud.qdrant.io:6333',
+//     apiKey: '7PldeP433VFOa7UsIn05Md_AItfYAim-6N5SYDW0sruxTtxERF-1EA',
+// });
 
 const results = await vectorStore.similaritySearch(message, 4)
 
